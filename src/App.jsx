@@ -37,7 +37,7 @@ function App() {
 
       </div>
       <div className={`product-list-container ${showProductList ? 'visible' : ''}`}>
-        <ProductList onHomeClick={handleHomeClick}/>
+        <ProductList onHomeClick={handleHomeClick} />
       </div>
     </div>
   );
