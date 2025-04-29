@@ -7,7 +7,6 @@ const CartItem = ({ onContinueShopping }) => {
   const cart = useSelector((state) => state.cart.items);
   const dispatch = useDispatch();
 
-  console.log(cart);
 
   // Calculate total amount for all products in the cart
   const calculateTotalAmount = () => {
@@ -31,11 +30,12 @@ const CartItem = ({ onContinueShopping }) => {
     if (item.quantity > 1) {
       const updatedItem = { ...item, quantity: item.quantity - 1 };
       dispatch(updateQuantity(updatedItem));
+    } else {
+      handleRemove(item)
     }
   };
 
   const handleRemove = (item) => {
-    // console.log(item)
     dispatch(removeItem(item));
   };
 

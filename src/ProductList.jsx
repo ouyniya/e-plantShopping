@@ -1,14 +1,25 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 import "./ProductList.css";
 import CartItem from "./CartItem";
-import { addItem } from "./CartSlice";
-function ProductList({ onHomeClick }) {
+import { addItem, updateQuantity } from "./CartSlice";
 
+
+function ProductList({ onHomeClick }) {
   const [showCart, setShowCart] = useState(false);
   const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
   const [addedToCard, setAddedToCard] = useState({});
   const dispatch = useDispatch();
+
+  const cart = useSelector((state) => state.cart.items);
+
+  const calculateTotalAmount = () => {
+    const totalAmount = cart.reduce((acc, item) => {
+      acc += Number(item.quantity)
+      return acc;
+    }, 0);
+    return totalAmount;
+  };
 
   const plantsArray = [
     {
@@ -327,6 +338,7 @@ function ProductList({ onHomeClick }) {
           </div>
           <div>
             {" "}
+            <div className="cart_quantity_count">{calculateTotalAmount()}</div>
             <a href="#" onClick={(e) => handleCartClick(e)} style={styleA}>
               <h1 className="cart">
                 <svg
@@ -359,7 +371,7 @@ function ProductList({ onHomeClick }) {
           {plantsArray.map((category, index) => (
             <div key={index}>
               <h1>
-                <div>{category.category}</div>
+                <div className="product-category">{category.category}</div>
               </h1>
               <div className="product-list">
                 {category.plants.map((plant, plantId) => (

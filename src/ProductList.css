@@ -74,6 +74,11 @@ body {
     gap: 20px;
 }
 
+.product-category {
+    margin: auto;
+    text-align: center;
+}
+
 /* Pseudo-classes - Hover effect on product button */
 .product-card:hover {
     transform: scale(1.05);
@@ -84,6 +89,8 @@ body {
 .product-title {
     font-weight: bold;
     margin-bottom: 10px;
+    text-align: center;
+    width: 100%;
 }
 
 .product-price {
